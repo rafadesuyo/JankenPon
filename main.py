@@ -74,9 +74,9 @@ paper = Card(300, 170, 0, 0)
 scissor = Card(570, 170, 0, 0)
 ai = Card(800, 170, 0, 0)
 
-
-def draw_aura(x, y):
-    screen.blit(aura_image, (x, y))
+# bugfixes-code improvement 5/8/2023
+def draw_sprite(image, x, y):
+    screen.blit(image, (x, y))
 
 
 def draw_again(x, y):
@@ -97,10 +97,6 @@ def draw_ai(x, y):
 
 def draw_draw(x, y):
     screen.blit(draw_image, (x, y))
-
-
-def draw_rock(x, y):
-    screen.blit(rock_image, (x, y))
 
 
 def draw_paper(x, y):
@@ -182,7 +178,7 @@ while True:
 
     if menu:  # if on menu, choose a card.
         sound_played = False
-        draw_rock(rock.x, rock.y)  # rock location
+        draw_sprite(rock_image, rock.x, rock.y) # displays the rock image
         draw_paper(paper.x, paper.y)  # scissor location
         draw_scissor(scissor.x, scissor.y)  # paper location
         cards_random = random.choice(cards)
@@ -221,7 +217,7 @@ while True:
         if rock.x < 100:
             rock.x_change = 5  # move rock to the middle
             rock.x += rock.x_change
-            draw_rock(rock.x, rock.y)
+            draw_sprite(rock_image, rock.x, rock.y)
 
             paper.x_change = 35 # move paper away
             paper.x += paper.x_change
@@ -232,7 +228,7 @@ while True:
             draw_scissor(scissor.x, scissor.y)
 
         if rock.x == 100:
-            draw_rock(100, rock.y)
+            draw_sprite(rock_image, 100, rock.y)
             if ai.x > 500:
                 ai.x_change = -10
                 ai.x += ai.x_change
@@ -245,7 +241,7 @@ while True:
 
             if ai.x == 499:
                 if cards_random == 0: # if ai choice is rock[0] DRAW.
-                    draw_rock(500, ai.y)
+                    draw_sprite(rock_image, 500, ai.y)
                     draw_vs(350, 250)
                     draw_draw(200, 20)
                     draw_again(330, 500)
@@ -263,7 +259,7 @@ while True:
                     draw_vs(350, 250)
                     draw_lose(200, 20)
                     draw_again(330, 500)
-                    draw_aura(446, 116)  # win pos
+                    draw_sprite(aura_image, 446, 116)  # win pos
                     if not sound_played:
                         lose_sound()
                         sound_played = True
@@ -278,7 +274,7 @@ while True:
                     draw_vs(350, 250)
                     draw_win(250, 20)
                     draw_again(330, 500)
-                    draw_aura(46, 116)
+                    draw_sprite(aura_image, 46, 116)
                     if not sound_played:
                         win_sound()
                         sound_played = True
@@ -299,7 +295,7 @@ while True:
 
             rock.x_change = 45  # move rock away
             rock.x += paper.x_change
-            draw_rock(rock.x, rock.y)
+            draw_sprite(rock_image, rock.x, rock.y)
 
             scissor.x_change = 35  # move paper away
             scissor.x += scissor.x_change
@@ -319,11 +315,11 @@ while True:
 
             if ai.x == 499:
                 if cards_random == 0:  # if ai choice is rock[0] WIN
-                    draw_rock(500, ai.y)
+                    draw_sprite(rock_image, 500, ai.y)
                     draw_vs(350, 250)
                     draw_win(200, 20)
                     draw_again(330, 500)
-                    draw_aura(46, 116)
+                    draw_sprite(aura_image, 46, 116)
                     if not sound_played:
                         win_sound()
                         sound_played = True
@@ -352,7 +348,7 @@ while True:
                     draw_vs(350, 250)
                     draw_lose(250, 20)
                     draw_again(330, 500)
-                    draw_aura(446, 116)  # win pos
+                    draw_sprite(aura_image, 446, 116)  # win pos
                     if not sound_played:
                         lose_sound()
                         sound_played = True
@@ -373,7 +369,7 @@ while True:
 
             rock.x_change = 45  # move rock away
             rock.x += paper.x_change
-            draw_rock(rock.x, rock.y)
+            draw_sprite(rock_image, rock.x, rock.y)
 
             paper.x_change = 35  # move paper away
             paper.x += paper.x_change
@@ -393,11 +389,11 @@ while True:
 
             if ai.x == 499:
                 if cards_random == 0:  # if ai choice is rock[0] LOSE
-                    draw_rock(500, ai.y)
+                    draw_sprite(rock_image, 500, ai.y)
                     draw_vs(350, 250)
                     draw_lose(200, 20)
                     draw_again(330, 500)
-                    draw_aura(446, 116)
+                    draw_sprite(aura_image, 446, 116)
                     if not sound_played:
                         lose_sound()
                         sound_played = True
@@ -412,7 +408,7 @@ while True:
                     draw_vs(350, 250)
                     draw_win(200, 20)
                     draw_again(330, 500)
-                    draw_aura(46, 116)
+                    draw_sprite(aura_image, 46, 116)
                     if not sound_played:
                         win_sound()
                         sound_played = True
